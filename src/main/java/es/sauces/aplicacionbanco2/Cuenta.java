@@ -19,7 +19,7 @@ public class Cuenta {
     private String codigo;
     private String titular;
     private float saldo;
-    List<Movimiento> movimientos;
+    private List<Movimiento> movimientos;
 
     public Cuenta(String codigo, String titular, float saldo) {
         this.codigo = codigo;
