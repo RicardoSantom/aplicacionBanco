@@ -6,6 +6,7 @@
 package es.sauces.aplicacionbanco2;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -15,7 +16,7 @@ import java.util.List;
 public class Banco {
 
     private String nombre;
-    private List<Cuenta> cuentas;
+    private LinkedList<Cuenta> cuentas;
 
     /**
      *
@@ -23,7 +24,7 @@ public class Banco {
      */
     public Banco(String nombre) {
         this.nombre = nombre;
-        this.cuentas = new ArrayList<>();
+        this.cuentas = new LinkedList<>();
     }
 
     /**

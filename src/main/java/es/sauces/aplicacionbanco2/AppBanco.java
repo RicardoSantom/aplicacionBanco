@@ -105,25 +105,20 @@ public class AppBanco {
                                     break;
                                 case 3:
                                     System.out.println("3.Consultar saldo");
-                                    codigo = pedirCodigo("Introduzca codigo de cuenta para consultar:");
-                                    if (cuenta1.getCodigo().equals(codigo)) {
-                                        System.out.println(cuenta1.getSaldo());
-                                    } else {
-                                        System.out.println("No hay una cuenta con este código.");
-                                    }
+                                    System.out.println(cuenta1.getSaldo());
                                     break;
                                 case 4:
-                                    String codigo2;
                                     System.out.println("4.Realizar transferencia");
-                                    codigo = pedirCodigo("Introduzca codigo de cuenta origen:");
+                                    codigo = pedirCodigo("Introduzca codigo de cuenta destino:");
                                     cuenta2 = banco.getCuenta(codigo);
                                     if (cuenta2 != null) {
                                         cantidad = pedirFloat("Introduzca cantidad a transferir");
+                                        teclado.nextLine();
                                         cuenta1.realizarTransferencia(cuenta2, cantidad);
-                                        System.out.printf("Saldo : \f", cuenta1.getSaldo());
                                     } else {
                                         System.out.println("Error en la transferencia");
                                     }
+                                        System.out.println("Saldo ="+ cuenta1.getSaldo());
                                     teclado.nextLine();
                                     break;
                                 case 5:
