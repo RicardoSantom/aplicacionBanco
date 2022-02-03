@@ -18,6 +18,13 @@ public class Movimiento {
     private float cantidad;
     private float saldo;
 
+    /**
+     *
+     * @param fecha
+     * @param tipo
+     * @param cantidad
+     * @param saldo
+     */
     public Movimiento(LocalDate fecha, char tipo, float cantidad, float saldo) {
         this.fecha = fecha;
         this.tipo = tipo;
@@ -25,18 +32,34 @@ public class Movimiento {
         this.saldo = saldo;
     }
 
+    /**
+     *
+     * @return
+     */
     public LocalDate getFecha() {
         return fecha;
     }
 
+    /**
+     *
+     * @return
+     */
     public char getTipo() {
         return tipo;
     }
 
+    /**
+     *
+     * @return
+     */
     public float getCantidad() {
         return cantidad;
     }
 
+    /**
+     *
+     * @return
+     */
     public float getSaldo() {
         return saldo;
     }

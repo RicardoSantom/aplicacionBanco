@@ -17,19 +17,35 @@ public class Banco {
     private String nombre;
     private List<Cuenta> cuentas;
 
+    /**
+     *
+     * @param nombre
+     */
     public Banco(String nombre) {
         this.nombre = nombre;
         this.cuentas = new ArrayList<>();
     }
 
+    /**
+     *
+     * @return
+     */
     public String getNombre() {
         return nombre;
     }
 
+    /**
+     *
+     * @return
+     */
     public List<Cuenta> getCuentas() {
         return cuentas;
     }
 
+    /**
+     *
+     * @param nombre
+     */
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
@@ -39,6 +55,13 @@ public class Banco {
         return nombre;
     }
 
+    /**
+     *
+     * @param codigo
+     * @param titular
+     * @param saldo
+     * @return
+     */
     public boolean abrirCuenta(String codigo, String titular, float saldo) {
         boolean salida;
         salida = false;
@@ -48,6 +71,11 @@ public class Banco {
         return salida;
     }
     
+    /**
+     *
+     * @param codigo
+     * @return
+     */
     public Cuenta getCuenta(String codigo){
         Cuenta c=null;
         int posicion;
@@ -59,6 +87,11 @@ public class Banco {
         return c;
     }
     
+    /**
+     *
+     * @param codigo
+     * @return
+     */
     public boolean cancelarCuenta(String codigo){
         boolean salida;
         salida=false;
@@ -69,6 +102,10 @@ public class Banco {
         return salida;
     }
     
+    /**
+     *
+     * @return
+     */
     public float getTotalDepositos(){
         float acumulador=0;
         

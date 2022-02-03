@@ -21,29 +21,60 @@ public class Cuenta {
     private float saldo;
     private List<Movimiento> movimientos;
 
+    /**
+     *
+     * @param codigo
+     * @param titular
+     * @param saldo
+     */
     public Cuenta(String codigo, String titular, float saldo) {
         this.codigo = codigo;
         this.titular = titular;
-        this.saldo = saldo;
+        if(saldo>=0){
+            this.saldo = saldo;
+        }
         movimientos=new ArrayList<>();
+        movimientos.add(new Movimiento(LocalDate.now(),'I', saldo, saldo));
     }
 
+    /**
+     *
+     * @return
+     */
     public String getCodigo() {
         return codigo;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getTitular() {
         return titular;
     }
 
+    /**
+     *
+     * @return
+     */
     public float getSaldo() {
         return saldo;
     }
 
+    /**
+     *
+     * @return
+     */
     public List<Movimiento> getMovimientos() {
         return movimientos;
     }
     
+    /**
+     *
+     * @param desde
+     * @param hasta
+     * @return
+     */
     public List<Movimiento> getMovimientos(LocalDate desde,LocalDate hasta){
         List<Movimiento> salida=new ArrayList<>();
         Iterator<Movimiento> iterador=movimientos.iterator();
@@ -57,12 +88,22 @@ public class Cuenta {
         return salida;
     }
 
+    /**
+     *
+     * @param codigo
+     */
     public void setCodigo(String codigo) {
         this.codigo = codigo;
     }
 
+    /**
+     *
+     * @param saldo
+     */
     public void setSaldo(float saldo) {
-        this.saldo = saldo;
+        if(saldo>=0){
+         this.saldo = saldo;
+        }
     }
 
     @Override
@@ -95,6 +136,10 @@ public class Cuenta {
         return codigo + "," + titular + "," + saldo;
     }
     
+    /**
+     *Método que permite ingresr dinero en la cuenta.
+     * @param cantiddad a ingresar en la cuenta
+     */
     public void ingresar(float cantidad){
         if(cantidad>0){
             saldo+=cantidad;
@@ -102,6 +147,10 @@ public class Cuenta {
         }
     }
     
+    /**
+     *
+     * @param cantidad
+     */
     public void reintegrar(float cantidad){
         if(cantidad>0 && cantidad<=saldo){
             saldo-=cantidad;
@@ -109,6 +158,11 @@ public class Cuenta {
         }
     }
     
+    /**
+     *
+     * @param destino
+     * @param cantidad
+     */
     public void realizarTransferencia(Cuenta destino,float cantidad){
         if(cantidad > 0 && cantidad <=saldo){
             saldo-=cantidad;
@@ -118,6 +172,10 @@ public class Cuenta {
         }
     }
     
+    /**
+     *
+     * @return
+     */
     public String listarMovimientos(){
         StringBuilder sb=new StringBuilder();
         for(Movimiento m: movimientos){

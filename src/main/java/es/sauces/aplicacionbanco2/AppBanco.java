@@ -8,8 +8,16 @@ package es.sauces.aplicacionbanco2;
 import java.util.List;
 import java.util.Scanner;
 
+/**
+ *
+ * @author daw1
+ */
 public class AppBanco {
 
+    /**
+     *
+     * @param args
+     */
     public static void main(String[] args) {
         Banco banco = new Banco("Banco Sauces");
         int opcion, opcion2;
@@ -108,23 +116,21 @@ public class AppBanco {
                                     String codigo2;
                                     System.out.println("4.Realizar transferencia");
                                     codigo = pedirCodigo("Introduzca codigo de cuenta origen:");
-                                    if (cuenta1.getCodigo().equals(codigo)) {
-                                        codigo2 = pedirCodigo("Introduzca codigo cuenta de destino:");
-                                        if (cuenta1.getCodigo().equals(codigo2)) {
-                                            cantidad = pedirFloat("Introduzca cantidad a transferir");
-                                            cuenta1.realizarTransferencia(cuenta1, cantidad);
-                                        }
+                                    cuenta2 = banco.getCuenta(codigo);
+                                    if (cuenta2 != null) {
+                                        cantidad = pedirFloat("Introduzca cantidad a transferir");
+                                        cuenta1.realizarTransferencia(cuenta2, cantidad);
+                                        System.out.printf("Saldo : \f", cuenta1.getSaldo());
                                     } else {
-                                        System.out.println("No hay una cuenta con este código.");
+                                        System.out.println("Error en la transferencia");
                                     }
+                                    teclado.nextLine();
                                     break;
                                 case 5:
                                     System.out.println("5.Consultar movimientos");
                                     codigo = pedirCodigo("Introduzca codigo de cuenta para consultar movimientos.");
                                     System.out.println();
-
                                     if (cuenta1.getCodigo().equals(codigo)) {
-                                        System.out.println(cuenta1.getMovimientos());
                                         System.out.println(cuenta1.listarMovimientos());
                                     } else {
                                         System.out.println("No hay una cuenta con este código.");
