@@ -6,8 +6,9 @@
 package es.sauces.aplicacionbanco2;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  *
@@ -16,7 +17,7 @@ import java.util.List;
 public class Banco {
 
     private String nombre;
-    private LinkedList<Cuenta> cuentas;
+    private Set<Cuenta> cuentas;
 
     /**
      *
@@ -24,7 +25,7 @@ public class Banco {
      */
     public Banco(String nombre) {
         this.nombre = nombre;
-        this.cuentas = new LinkedList<>();
+        this.cuentas = new HashSet<>();
     }
 
     /**
@@ -40,7 +41,8 @@ public class Banco {
      * @return
      */
     public List<Cuenta> getCuentas() {
-        return cuentas;
+        List <Cuenta> listaCuenta= new ArrayList<>(cuentas);
+        return listaCuenta;
     }
 
     /**
@@ -64,12 +66,7 @@ public class Banco {
      * @return
      */
     public boolean abrirCuenta(String codigo, String titular, float saldo) {
-        boolean salida;
-        salida = false;
-        if (buscarCuenta(codigo) == -1) {
-            salida = cuentas.add(new Cuenta(codigo, titular, saldo));
-        }
-        return salida;
+         return cuentas.add(new Cuenta(codigo, titular, saldo));
     }
     
     /**
@@ -78,14 +75,14 @@ public class Banco {
      * @return
      */
     public Cuenta getCuenta(String codigo){
-        Cuenta c=null;
-        int posicion;
-        
-        posicion=buscarCuenta(codigo);
-        if(posicion!=-1){
-            c=cuentas.get(posicion);
-        }
-        return c;
+        Cuenta c=null,aux;
+       for(Cuenta c1: cuentas){
+           if(c1.getCodigo().equals(codigo)){
+               c=c1;
+               break;
+           }
+       }
+       return c;
     }
     
     /**
@@ -116,6 +113,7 @@ public class Banco {
         return acumulador;
     }
 
+    /*Con set no es necesario este método
     private int buscarCuenta(String codigo) {
         int posicion = -1;
         for (int i = 0; i < cuentas.size(); i++) {
@@ -124,6 +122,6 @@ public class Banco {
             }
         }
         return posicion;
-    }
+    }*/
 
 }
