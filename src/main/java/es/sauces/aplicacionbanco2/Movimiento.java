@@ -10,7 +10,7 @@ import java.time.LocalDate;
 
 /**
  *
- * @author daw1
+ * @Ricardo
  */
 public class Movimiento {
     private LocalDate fecha;
@@ -19,11 +19,13 @@ public class Movimiento {
     private float saldo;
 
     /**
-     *
-     * @param fecha
-     * @param tipo
-     * @param cantidad
-     * @param saldo
+     * La clase Movimiento construye objetos que registran los ingresos, reintegros y transferencias de
+     * las instancias de la clase Cuenta.
+     *El constructor  inicialilza las variables listadas a continuacion.
+     * @param fecha de tipo LocalDate registra la hora en que se reallizó un movimiento.
+     * @param tipo es un tipo primivito char y especifica si se trata de un ingreso='I¡,reintegro='R' o transferencia='T'.
+     * @param cantidad de tipo float, se utiliza para recoger la cantidad que se reintegra, ingresa o transfiere en saldo.
+     * @param saldo de tipo float, representa el dinero existente en el objeto Movimiento.
      */
     public Movimiento(LocalDate fecha, char tipo, float cantidad, float saldo) {
         this.fecha = fecha;
@@ -34,7 +36,7 @@ public class Movimiento {
 
     /**
      *
-     * @return
+     * @return la fecha presente en lsd instancias de la clase Movimiento
      */
     public LocalDate getFecha() {
         return fecha;
@@ -42,7 +44,7 @@ public class Movimiento {
 
     /**
      *
-     * @return
+     * @return el tipo de movimiento dentro del objeto de la clase Movimiento. ngreso='I¡,reintegro='R' o transferencia='T'.
      */
     public char getTipo() {
         return tipo;
@@ -50,7 +52,7 @@ public class Movimiento {
 
     /**
      *
-     * @return
+     * @return la cantidad que se ingresa,reintegra o transfiere al objeto del tipo Cuenta y queda registrada en el objeto del tipo Movimiento.
      */
     public float getCantidad() {
         return cantidad;
@@ -58,13 +60,21 @@ public class Movimiento {
 
     /**
      *
-     * @return
+     * @return el montante (o quizás criptomonedas...) disponibles en una Cuenta.
      */
     public float getSaldo() {
         return saldo;
     }
 
     @Override
+    /**
+     * El método sobreescrito toString nos devuelve una cadena con la información 
+     * del objeto del tipo Movimiento, sus parámetros son:
+     * @param fecha
+     * @param tipo
+     * @param cantidad
+     * @param saldo
+     */
     public String toString() {
         return  fecha + ","+ tipo+","+cantidad+"=" + saldo;
     }

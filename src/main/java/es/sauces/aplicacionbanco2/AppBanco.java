@@ -10,7 +10,7 @@ import java.util.Scanner;
 
 /**
  *
- * @author daw1
+ * @author Ricardo
  */
 public class AppBanco {
 
@@ -54,22 +54,6 @@ public class AppBanco {
                     } else {
                         System.out.println("No se ha podido crear la cuenta");
                     }
-                    /*String siNo;
-                    System.out.println("¿Desea crear otra cuenta?(Y/N)");
-                    siNo = teclado.nextLine();
-                    while (siNo.equalsIgnoreCase("Y")) {
-                        System.out.println("1.Abrir cuenta");
-                        codigo=pedirCodigo("Introduzca codigo de cuenta:");
-                        System.out.println("Introduzca titular de la cuenta");
-                        titular = teclado.nextLine();
-                        saldo=pedirSaldo("Introduzca saldo inicial");
-                        teclado.nextLine();
-                        if (banco.abrirCuenta(codigo, titular, saldo)) {
-                            System.out.println("Cuenta creada");
-                        } else {
-                            System.out.println("No se ha podido crear la cuenta");
-                        }
-                    }*/
                     break;
                 case 2:
                     System.out.println("2.Operar cuenta");
