@@ -36,15 +36,10 @@ public class AppBanco {
                      codigo;
                     float saldo;
                     System.out.println("1.Abrir cuenta");
-                    System.out.println("Introduzca codigo de la cuenta");
-                    codigo = teclado.nextLine();
+                    codigo = pedirCodigo("Introduzca codigo de cuenta:");
                     System.out.println("Introduzca titular de la cuenta");
                     titular = teclado.nextLine();
-                    System.out.println("Introduzca saldo de la cuenta");
-                    while (!teclado.hasNextFloat()) {
-                        teclado.nextLine();
-                    }
-                    saldo = teclado.nextFloat();
+                    saldo = pedirFloat("Introduzca saldo inicial");
                     teclado.nextLine();
                     if (banco.abrirCuenta(codigo, titular, saldo)) {
                         System.out.println("Cuenta creada");
@@ -56,15 +51,10 @@ public class AppBanco {
                     siNo = teclado.nextLine();
                     while (siNo.equalsIgnoreCase("Y")) {
                         System.out.println("1.Abrir cuenta");
-                        System.out.println("Introduzca codigo de la cuenta");
-                        codigo = teclado.nextLine();
+                        codigo=pedirCodigo("Introduzca codigo de cuenta:");
                         System.out.println("Introduzca titular de la cuenta");
                         titular = teclado.nextLine();
-                        System.out.println("Introduzca saldo de la cuenta");
-                        while (!teclado.hasNextFloat()) {
-                            teclado.nextLine();
-                        }
-                        saldo = teclado.nextFloat();
+                        saldo=pedirSaldo("Introduzca saldo inicial");
                         teclado.nextLine();
                         if (banco.abrirCuenta(codigo, titular, saldo)) {
                             System.out.println("Cuenta creada");
@@ -75,8 +65,7 @@ public class AppBanco {
                     break;
                 case 2:
                     System.out.println("2.Operar cuenta");
-                    System.out.println("Introduzca codigo de cuenta para operar");
-                    codigo = teclado.nextLine();
+                    codigo = pedirCodigo("Introduzca codigo de cuenta para operar:");
                     cuenta1 = banco.getCuenta(codigo);
                     if (cuenta1 != null) {
                         do {
@@ -85,7 +74,7 @@ public class AppBanco {
                             System.out.println("3.Consultar saldo");
                             System.out.println("4.Realizar transferencia");
                             System.out.println("5.Consultar movimientos");
-                            System.out.println("0.Salir");
+                            System.out.println("0.Atrás.");
                             System.out.println("Introduzca opcion:");
                             while (!teclado.hasNextInt()) {
                                 teclado.nextLine();
@@ -96,28 +85,19 @@ public class AppBanco {
                                 case 1:
                                     float cantidad;
                                     System.out.println("1.Ingresar dinero");
-                                    System.out.println("Introduzca cantidad a ingresar");
-                                    while (!teclado.hasNextFloat()) {
-                                        teclado.nextLine();
-                                    }
-                                    cantidad = teclado.nextFloat();
+                                    cantidad = pedirFloat("Introduzca cantidad a ingresar");
                                     cuenta1.ingresar(cantidad);
                                     System.out.println("Cantidad ingresada. Saldo=" + cuenta1.getSaldo());
                                     break;
                                 case 2:
                                     System.out.println("2.Retirar dinero");
-                                    System.out.println("Introduzca cantidad a retirar");
-                                    while (!teclado.hasNextFloat()) {
-                                        teclado.nextLine();
-                                    }
-                                    cantidad = teclado.nextFloat();
+                                    cantidad = pedirFloat("Introduzca cantidad a retirar.");
                                     cuenta1.reintegrar(cantidad);
                                     System.out.println("Cantidad retirada. Saldo=" + cuenta1.getSaldo());
                                     break;
                                 case 3:
                                     System.out.println("3.Consultar saldo");
-                                    System.out.println("Introduzca codigo de cuenta para consultar.");
-                                    codigo = teclado.nextLine();
+                                    codigo = pedirCodigo("Introduzca codigo de cuenta para consultar:");
                                     if (cuenta1.getCodigo().equals(codigo)) {
                                         System.out.println(cuenta1.getSaldo());
                                     } else {
@@ -125,18 +105,13 @@ public class AppBanco {
                                     }
                                     break;
                                 case 4:
+                                    String codigo2;
                                     System.out.println("4.Realizar transferencia");
-                                    System.out.println("Introduzca codigo de cuenta origen");
-                                    codigo = teclado.nextLine();
+                                    codigo = pedirCodigo("Introduzca codigo de cuenta origen:");
                                     if (cuenta1.getCodigo().equals(codigo)) {
-                                        System.out.println("Introduzca codigo cuenta de destino");
-                                        String codigo2 = teclado.nextLine();
+                                        codigo2 = pedirCodigo("Introduzca codigo cuenta de destino:");
                                         if (cuenta1.getCodigo().equals(codigo2)) {
-                                            System.out.println("Introduzca saldo a transferir:");
-                                            while (!teclado.hasNextFloat()) {
-                                                teclado.nextLine();
-                                            }
-                                            cantidad = teclado.nextFloat();
+                                            cantidad = pedirFloat("Introduzca cantidad a transferir");
                                             cuenta1.realizarTransferencia(cuenta1, cantidad);
                                         }
                                     } else {
@@ -145,10 +120,12 @@ public class AppBanco {
                                     break;
                                 case 5:
                                     System.out.println("5.Consultar movimientos");
-                                    System.out.println("Introduzca codigo de cuenta para consultar movimientos.");
-                                    codigo = teclado.nextLine();
+                                    codigo = pedirCodigo("Introduzca codigo de cuenta para consultar movimientos.");
+                                    System.out.println();
+
                                     if (cuenta1.getCodigo().equals(codigo)) {
                                         System.out.println(cuenta1.getMovimientos());
+                                        System.out.println(cuenta1.listarMovimientos());
                                     } else {
                                         System.out.println("No hay una cuenta con este código.");
                                     }
@@ -166,8 +143,7 @@ public class AppBanco {
                     break;
                 case 3:
                     System.out.println("3.Cancelar cuenta");
-                    System.out.println("Introduzca codigo de cuenta");
-                    codigo = teclado.nextLine();
+                    codigo = pedirCodigo("Introduzca codigo de cuenta");
                     if (banco.cancelarCuenta(codigo)) {
                         System.out.println("Cuenta cancelada");
                     }
@@ -179,12 +155,10 @@ public class AppBanco {
                         System.out.println(c);
                     }
                     System.out.println();
-
                     break;
                 case 5:
                     System.out.println("5.Consultar total depositos");
                     System.out.println("Total depósitos:" + banco.getTotalDepositos());
-
                     break;
                 case 0:
                     System.out.println("Hasta pronto.");
@@ -194,6 +168,27 @@ public class AppBanco {
             }
 
         } while (opcion != 0);
+    }
+
+    private static String pedirCodigo(String mensaje) {
+        Scanner teclado = new Scanner(System.in);
+        String codigo;
+        do {
+            System.out.println(mensaje);
+            codigo = teclado.nextLine();
+        } while (codigo.length() <= 0);
+        return codigo;
+    }
+
+    private static float pedirFloat(String mensaje) {
+        Scanner teclado = new Scanner(System.in);
+        float n;
+        System.out.println(mensaje);
+        while (!teclado.hasNextFloat()) {
+            teclado.nextLine();
+        }
+        n = teclado.nextFloat();
+        return n;
     }
 
 }
