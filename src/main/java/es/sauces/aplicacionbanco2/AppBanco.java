@@ -102,8 +102,8 @@ public class AppBanco {
                                     } else {
                                         System.out.println("Error en la transferencia");
                                     }
-                                        System.out.println("Saldo ="+ cuenta1.getSaldo());
-                                        System.out.println("mensaje prueba");
+                                    System.out.println("Saldo =" + cuenta1.getSaldo());
+                                    System.out.println("mensaje prueba");
                                     teclado.nextLine();
                                     break;
                                 case 5:
