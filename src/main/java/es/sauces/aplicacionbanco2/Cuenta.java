@@ -13,7 +13,7 @@ import java.util.Objects;
 
 /**
  *
- * @Ricardo
+ * @Ricardo Santiago Tomé
  * La clase Cuenta crea objetos con un codigo, titular, un saldo y los movimientos
  * que dentro de la cuenta se realizan.
  */

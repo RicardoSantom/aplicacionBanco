@@ -12,7 +12,7 @@ import java.util.Set;
 
 /**
  *
- * @author Ricardo
+ * @author Ricardo Santiago Tomé
  */
 public class Banco {
 
@@ -21,7 +21,7 @@ public class Banco {
 
     /**
      *
-     * @param nombre se le pasa al método Banco para que añada este String como identificador de
+     * @param nombre que se le pasa al método Banco para que añada este String como identificador de
      * la instancia de la clase Banco.
      * El método también cuenta en su constructor con un conjunto HashSet construido en base a un Set
      * de tipo Cuenta.

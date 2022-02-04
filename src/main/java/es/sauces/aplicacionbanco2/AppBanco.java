@@ -10,7 +10,7 @@ import java.util.Scanner;
 
 /**
  *
- * @author Ricardo
+ * @author Ricardo Santiago Tomé
  */
 public class AppBanco {
 
