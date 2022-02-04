@@ -48,7 +48,6 @@ public class AppBanco {
                     System.out.println("Introduzca titular de la cuenta");
                     titular = teclado.nextLine();
                     saldo = pedirFloat("Introduzca saldo inicial");
-                    teclado.nextLine();
                     if (banco.abrirCuenta(codigo, titular, saldo)) {
                         System.out.println("Cuenta creada");
                     } else {
@@ -97,7 +96,6 @@ public class AppBanco {
                                     cuenta2 = banco.getCuenta(codigo);
                                     if (cuenta2 != null) {
                                         cantidad = pedirFloat("Introduzca cantidad a transferir");
-                                        teclado.nextLine();
                                         cuenta1.realizarTransferencia(cuenta2, cantidad);
                                     } else {
                                         System.out.println("Error en la transferencia");
@@ -174,6 +172,7 @@ public class AppBanco {
             teclado.nextLine();
         }
         n = teclado.nextFloat();
+        teclado.nextLine();
         return n;
     }
 

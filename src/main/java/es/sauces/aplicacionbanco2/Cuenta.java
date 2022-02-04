@@ -16,7 +16,7 @@ import java.util.Objects;
  * @Ricardo Santiago Tomé La clase Cuenta crea objetos con un codigo, titular,
  * un saldo y los movimientos que dentro de la cuenta se realizan.
  */
-public class Cuenta {
+public class Cuenta implements Comparable<Cuenta>{
 
     private String codigo;
     private String titular;
@@ -213,6 +213,11 @@ public class Cuenta {
             sb.append(m.toString()).append("\n");
         }
         return sb.toString();
+    }
+
+    @Override
+    public int compareTo(Cuenta o) {
+        return this.codigo.compareTo(o.codigo);
     }
 
 }
