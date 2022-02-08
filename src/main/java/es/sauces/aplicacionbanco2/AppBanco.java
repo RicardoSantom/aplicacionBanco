@@ -24,6 +24,10 @@ public class AppBanco {
         Scanner teclado = new Scanner(System.in);
         List<Cuenta> listado;
         Cuenta cuenta1, cuenta2;
+        
+        for(TipoMovimiento tp:TipoMovimiento.values()){
+            System.out.println(tp);
+        }
 
         do {
             System.out.println("1.Abrir cuenta");

@@ -37,7 +37,7 @@ public class Cuenta implements Comparable<Cuenta>{
             this.saldo = saldo;
         }
         movimientos = new ArrayList<>();
-        movimientos.add(new Movimiento(LocalDate.now(), 'I', saldo, saldo));
+        movimientos.add(new Movimiento(LocalDate.now(),TipoMovimiento.INGRESO, saldo, saldo));
     }
 
     /**
@@ -155,7 +155,7 @@ public class Cuenta implements Comparable<Cuenta>{
     public void ingresar(float cantidad) {
         if (cantidad > 0) {
             saldo += cantidad;
-            movimientos.add(new Movimiento(LocalDate.now(), 'I', cantidad, saldo));
+            movimientos.add(new Movimiento(LocalDate.now(), TipoMovimiento.INGRESO, cantidad, saldo));
         }
     }
 
@@ -170,7 +170,7 @@ public class Cuenta implements Comparable<Cuenta>{
     public void reintegrar(float cantidad) {
         if (cantidad > 0 && cantidad <= saldo) {
             saldo -= cantidad;
-            movimientos.add(new Movimiento(LocalDate.now(), 'R', -cantidad, saldo));
+            movimientos.add(new Movimiento(LocalDate.now(),TipoMovimiento.REINTEGRO, -cantidad, saldo));
         }
     }
 
@@ -196,8 +196,8 @@ public class Cuenta implements Comparable<Cuenta>{
         if (cantidad > 0 && cantidad <= saldo) {
             saldo -= cantidad;
             destino.saldo += cantidad;
-            movimientos.add(new Movimiento(LocalDate.now(), 'T', -cantidad, saldo));
-            destino.movimientos.add(new Movimiento(LocalDate.now(), 'T', cantidad, destino.saldo));
+            movimientos.add(new Movimiento(LocalDate.now(), TipoMovimiento.TRANSFERENCIA, -cantidad, saldo));
+            destino.movimientos.add(new Movimiento(LocalDate.now(), TipoMovimiento.TRANSFERENCIA, cantidad, destino.saldo));
         }
     }
 

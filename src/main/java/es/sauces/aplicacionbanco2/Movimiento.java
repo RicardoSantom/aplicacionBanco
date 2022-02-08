@@ -15,7 +15,7 @@ import java.time.LocalDate;
 public class Movimiento {
 
     private LocalDate fecha;
-    private char tipo;
+    private TipoMovimiento tipo;
     private float cantidad;
     private float saldo;
 
@@ -33,7 +33,7 @@ public class Movimiento {
      * @param saldo de tipo float, representa el dinero existente en el objeto
      * Movimiento.
      */
-    public Movimiento(LocalDate fecha, char tipo, float cantidad, float saldo) {
+    public Movimiento(LocalDate fecha, TipoMovimiento tipo, float cantidad, float saldo) {
         this.fecha = fecha;
         this.tipo = tipo;
         this.cantidad = cantidad;
@@ -53,7 +53,7 @@ public class Movimiento {
      * @return el tipo de movimiento dentro del objeto de la clase Movimiento.
      * ngreso='I¡,reintegro='R' o transferencia='T'.
      */
-    public char getTipo() {
+    public TipoMovimiento getTipo() {
         return tipo;
     }
 
