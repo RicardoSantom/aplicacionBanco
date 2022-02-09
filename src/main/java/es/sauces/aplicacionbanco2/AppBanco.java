@@ -24,6 +24,12 @@ public class AppBanco {
         Scanner teclado = new Scanner(System.in);
         List<Cuenta> listado;
         Cuenta cuenta1, cuenta2;
+        CuentaCredito cc;
+        
+        cc=new CuentaCredito("1","a",1,10);
+        cuenta1=cc;
+        //casting
+        /*((CuentaCredito)cuenta1).getLimiteCredito()*/
         
         for(TipoMovimiento tp:TipoMovimiento.values()){
             System.out.println(tp);

@@ -23,6 +23,11 @@ public class Cuenta implements Comparable<Cuenta>{
     private float saldo;
     private List<Movimiento> movimientos;
 
+    public Cuenta() {
+    }
+    
+    
+
     /**
      *
      * @param codigo String que identifica la Cuenta como única.
