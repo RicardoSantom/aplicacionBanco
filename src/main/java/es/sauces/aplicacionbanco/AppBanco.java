@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package es.sauces.aplicacionbanco2;
+package es.sauces.aplicacionbanco;
 
 import java.util.List;
 import java.util.Scanner;
@@ -11,7 +11,7 @@ import java.util.Scanner;
 /**
  *
  * @author Ricardo Santiago Tomé
- */
+**/
 public class AppBanco {
 
     /**
