@@ -1,4 +1,4 @@
-package es.sauces.aplicacionbanco2;
+package es.sauces.aplicacionbanco;
 
 import java.util.Comparator;
 public class ComparadorSaldo implements Comparator<Cuenta>{

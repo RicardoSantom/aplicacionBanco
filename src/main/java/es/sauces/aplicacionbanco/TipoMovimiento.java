@@ -1,4 +1,4 @@
-package es.sauces.aplicacionbanco2;
+package es.sauces.aplicacionbanco;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
