@@ -35,12 +35,14 @@ public class Cuenta implements Comparable<Cuenta>{
      * @param saldo float que representa la cantidad de activos presentes en el
      * objeto de la clase Cuenta
      */
-    public Cuenta(String codigo, String titular, float saldo) {
+    public Cuenta(String codigo, String titular, float saldo) throws SaldoException {
+        if(saldo <0){
+            throw new SaldoException("Error en el saldo");
+        }
         this.codigo = codigo;
         this.titular = titular;
-        if (saldo >= 0) {
-            this.saldo = saldo;
-        }
+        this.saldo = saldo;
+        
         movimientos = new ArrayList<>();
         movimientos.add(new Movimiento(LocalDate.now(),TipoMovimiento.INGRESO, saldo, saldo));
     }
@@ -115,10 +117,11 @@ public class Cuenta implements Comparable<Cuenta>{
      * @param saldo float que cambia el saldo preexistente sustituyéndolo por
      * este nuevo saldo recibido como parámetro.
      */
-    public void setSaldo(float saldo) {
-        if (saldo >= 0) {
-            this.saldo = saldo;
+    public void setSaldo(float saldo) throws SaldoException{
+        if (saldo < 0) {
+            throw new SaldoException("Error en el saldo");
         }
+        this.saldo = saldo;
     }
 
     @Override

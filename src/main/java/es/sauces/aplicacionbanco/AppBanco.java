@@ -7,6 +7,8 @@ package es.sauces.aplicacionbanco;
 
 import java.util.List;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -59,12 +61,19 @@ public class AppBanco {
                     System.out.println("Introduzca titular de la cuenta");
                     titular = teclado.nextLine();
                     saldo = pedirFloat("Introduzca saldo inicial");
-                    if (banco.abrirCuenta(codigo, titular, saldo)) {
-                        System.out.println("Cuenta creada");
-                    } else {
-                        System.out.println("No se ha podido crear la cuenta");
+                {
+                    try {
+                        if (banco.abrirCuenta(codigo, titular, saldo)) {
+                            System.out.println("Cuenta creada");
+                        } else {
+                            System.out.println("No se ha podido crear la cuenta");
+                        }
+                    } catch (SaldoException ex) {
+                        System.out.println("Error en el saldo");
                     }
+                }
                     break;
+
                 case 2:
                     System.out.println("2.Operar cuenta");
                     codigo = pedirCodigo("Introduzca codigo de cuenta para operar:");
