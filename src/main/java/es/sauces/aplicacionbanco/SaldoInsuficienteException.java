@@ -10,14 +10,10 @@ package es.sauces.aplicacionbanco;
  *
  * @author daw1
  */
-public enum TipoMovimiento {
-    INGRESO ("I"),REINTEGRO ("R"),TRANSFERENCIA ("T");
-    private final String codigo;
+public class SaldoInsuficienteException extends RuntimeException{
+
+    public SaldoInsuficienteException(String message) {
+        super(message);
+    }
     
-    private TipoMovimiento(String codigo){
-        this.codigo=codigo;
-    }
-    public String getCodigo(){
-        return codigo;
-    }
 }
