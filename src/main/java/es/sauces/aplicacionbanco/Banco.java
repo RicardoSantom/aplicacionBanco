@@ -71,7 +71,7 @@ public class Banco {
      * @return una nueva instancia de la clase Cuenta con los parámetros pasados
      * al método.
      */
-    public boolean abrirCuenta(String codigo, String titular, float saldo) {
+    public boolean abrirCuenta(String codigo, String titular, float saldo) throws SaldoException {
         boolean salida;
         salida=false;
         
