@@ -11,7 +11,8 @@ import java.util.Scanner;
 /**
  *
  * @author Ricardo Santiago Tomé
-**/
+*
+ */
 public class AppBanco {
 
     /**
@@ -25,13 +26,13 @@ public class AppBanco {
         List<Cuenta> listado;
         Cuenta cuenta1, cuenta2;
         CuentaCredito cc;
-        
-        cc=new CuentaCredito("1","a",1,10);
-        cuenta1=cc;
+
+        cc = new CuentaCredito("1", "a", 1, 10);
+        cuenta1 = cc;
         //casting
         /*((CuentaCredito)cuenta1).getLimiteCredito()*/
-        
-        for(TipoMovimiento tp:TipoMovimiento.values()){
+
+        for (TipoMovimiento tp : TipoMovimiento.values()) {
             System.out.println(tp);
         }
 
@@ -92,8 +93,12 @@ public class AppBanco {
                                     break;
                                 case 2:
                                     System.out.println("2.Retirar dinero");
-                                    cantidad = pedirFloat("Introduzca cantidad a retirar.");
-                                    cuenta1.reintegrar(cantidad);
+                                    cantidad = teclado.nextFloat();
+                                    try {
+                                        cuenta1.reintegrar(cantidad);
+                                    } catch (SaldoInsuficienteException sie) {
+                                        System.out.println("No se ha podido retirar la cantidad deseada.");
+                                    }
                                     System.out.println("Cantidad retirada. Saldo=" + cuenta1.getSaldo());
                                     break;
                                 case 3:
