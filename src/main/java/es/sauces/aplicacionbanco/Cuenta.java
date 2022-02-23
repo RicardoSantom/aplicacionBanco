@@ -16,7 +16,7 @@ import java.util.Objects;
  * @Ricardo Santiago Tomé La clase Cuenta crea objetos con un codigo, titular,
  * un saldo y los movimientos que dentro de la cuenta se realizan.
  */
-public class Cuenta implements Comparable<Cuenta>{
+public class Cuenta implements Comparable<Cuenta> {
 
     private String codigo;
     private String titular;
@@ -25,8 +25,6 @@ public class Cuenta implements Comparable<Cuenta>{
 
     public Cuenta() {
     }
-    
-    
 
     /**
      *
@@ -36,15 +34,15 @@ public class Cuenta implements Comparable<Cuenta>{
      * objeto de la clase Cuenta
      */
     public Cuenta(String codigo, String titular, float saldo) throws SaldoException {
-        if(saldo <0){
+        if (saldo < 0) {
             throw new SaldoException("Error en el saldo");
         }
         this.codigo = codigo;
         this.titular = titular;
         this.saldo = saldo;
-        
+
         movimientos = new ArrayList<>();
-        movimientos.add(new Movimiento(LocalDate.now(),TipoMovimiento.INGRESO, saldo, saldo));
+        movimientos.add(new Movimiento(LocalDate.now(), TipoMovimiento.INGRESO, saldo, saldo));
     }
 
     /**
@@ -117,7 +115,7 @@ public class Cuenta implements Comparable<Cuenta>{
      * @param saldo float que cambia el saldo preexistente sustituyéndolo por
      * este nuevo saldo recibido como parámetro.
      */
-    public void setSaldo(float saldo) throws SaldoException{
+    public void setSaldo(float saldo) throws SaldoException {
         if (saldo < 0) {
             throw new SaldoException("Error en el saldo");
         }
@@ -161,10 +159,12 @@ public class Cuenta implements Comparable<Cuenta>{
      * con los datos necesarios para su construcción.
      */
     public void ingresar(float cantidad) {
-        if (cantidad > 0) {
-            saldo += cantidad;
-            movimientos.add(new Movimiento(LocalDate.now(), TipoMovimiento.INGRESO, cantidad, saldo));
+        if (cantidad < 0) {
+            throw new IllegalArgumentException("La cantidad a ingresar debe ser positiva");
         }
+        saldo += cantidad;
+        movimientos.add(new Movimiento(LocalDate.now(), TipoMovimiento.INGRESO, cantidad, saldo));
+
     }
 
     /**
@@ -175,12 +175,15 @@ public class Cuenta implements Comparable<Cuenta>{
      * cuenta. También crea una nueva instancia de la clase Movimiento con los
      * datos necesarios para su construcción.
      */
-    public void reintegrar(float cantidad) {
-        if(cantidad>saldo){
+    public void reintegrar(float cantidad) throws SaldoException {
+        if (cantidad < 0) {
+            throw new IllegalArgumentException("La cantidad a ingresar debe ser positiva");
+        }
+        if (cantidad > saldo) {
             throw new SaldoInsuficienteException("Saldo insuficiente");
         }
         saldo -= cantidad;
-        movimientos.add(new Movimiento(LocalDate.now(),TipoMovimiento.REINTEGRO, -cantidad, saldo));
+        movimientos.add(new Movimiento(LocalDate.now(), TipoMovimiento.REINTEGRO, -cantidad, saldo));
     }
 
     /**
@@ -201,13 +204,20 @@ public class Cuenta implements Comparable<Cuenta>{
      * transferido y el saldo de la cuenta de destino después de la
      * transferencia.
      */
-    public void realizarTransferencia(Cuenta destino, float cantidad) {
-        if (cantidad > 0 && cantidad <= saldo) {
-            saldo -= cantidad;
-            destino.saldo += cantidad;
-            movimientos.add(new Movimiento(LocalDate.now(), TipoMovimiento.TRANSFERENCIA, -cantidad, saldo));
-            destino.movimientos.add(new Movimiento(LocalDate.now(), TipoMovimiento.TRANSFERENCIA, cantidad, destino.saldo));
+    public void realizarTransferencia(Cuenta destino, float cantidad) throws SaldoException {
+        if (cantidad < 0) {
+            throw new IllegalArgumentException("Argumento ilegal.");
         }
+        if (saldo < cantidad) {
+            throw new SaldoException("El saldo es insuficiente");
+        }
+        if (destino==null){
+            throw new NullPointerException("La cuenta a transferir no existe.");
+        }
+        saldo -= cantidad;
+        destino.saldo += cantidad;
+        movimientos.add(new Movimiento(LocalDate.now(), TipoMovimiento.TRANSFERENCIA, -cantidad, saldo));
+        destino.movimientos.add(new Movimiento(LocalDate.now(), TipoMovimiento.TRANSFERENCIA, cantidad, destino.saldo));
     }
 
     /**
