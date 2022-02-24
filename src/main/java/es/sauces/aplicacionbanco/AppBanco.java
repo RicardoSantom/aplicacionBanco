@@ -13,7 +13,7 @@ import java.util.logging.Logger;
 /**
  *
  * @author Ricardo Santiago Tomé
-*
+ *
  */
 public class AppBanco {
 
@@ -29,8 +29,12 @@ public class AppBanco {
         Cuenta cuenta1, cuenta2;
         CuentaCredito cc;
 
-        cc = new CuentaCredito("1", "a", 1, 10);
-        cuenta1 = cc;
+        try {
+            cc = new CuentaCredito("1", "a", 1, 10);
+            cuenta1 = cc;
+        } catch (SaldoException ex) {
+            System.out.println(ex.getMessage());
+        }
         //casting
         /*((CuentaCredito)cuenta1).getLimiteCredito()*/
 
@@ -56,13 +60,12 @@ public class AppBanco {
                     String titular,
                      codigo;
                     float saldo;
-                    System.out.println("1.Abrir cuenta");
-                    codigo = pedirCodigo("Introduzca codigo de cuenta:");
-                    System.out.println("Introduzca titular de la cuenta");
-                    titular = teclado.nextLine();
-                    saldo = pedirFloat("Introduzca saldo inicial");
-                {
                     try {
+                        System.out.println("1.Abrir cuenta");
+                        codigo = pedirCodigo("Introduzca codigo de cuenta:");
+                        System.out.println("Introduzca titular de la cuenta");
+                        titular = teclado.nextLine();
+                        saldo = pedirFloat("Introduzca saldo inicial");
                         if (banco.abrirCuenta(codigo, titular, saldo)) {
                             System.out.println("Cuenta creada");
                         } else {
@@ -71,7 +74,7 @@ public class AppBanco {
                     } catch (SaldoException ex) {
                         System.out.println("Error en el saldo");
                     }
-                }
+
                     break;
 
                 case 2:

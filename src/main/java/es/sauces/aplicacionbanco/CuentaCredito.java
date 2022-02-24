@@ -12,7 +12,7 @@ package es.sauces.aplicacionbanco;
 public class CuentaCredito extends Cuenta{
     private float limiteCredito;
 
-    public CuentaCredito(String codigo, String titular, float saldo,float limiteCredito) {
+    public CuentaCredito(String codigo, String titular, float saldo,float limiteCredito) throws SaldoException {
         super(codigo, titular, saldo);
         this.limiteCredito = limiteCredito;
     }
@@ -31,7 +31,11 @@ public class CuentaCredito extends Cuenta{
         if(cantidad >= 0 ){
             nuevoSaldo=getSaldo()-cantidad;
             if(nuevoSaldo>=limiteCredito){
-                setSaldo(nuevoSaldo);
+                try {
+                    setSaldo(nuevoSaldo);
+                } catch (SaldoException ex) {
+                    System.out.println(ex.getMessage());
+                }
             }
         }
     }
