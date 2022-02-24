@@ -32,14 +32,16 @@ public class Cuenta implements Comparable<Cuenta> {
      * @param titular String que asocia una Cuenta a un propietario.
      * @param saldo float que representa la cantidad de activos presentes en el
      * objeto de la clase Cuenta
+     * @throws es.sauces.aplicacionbanco.SaldoException
      */
     public Cuenta(String codigo, String titular, float saldo) throws SaldoException {
         if (saldo < 0) {
             throw new SaldoException("Error en el saldo");
+        } else {
+            this.codigo = codigo;
+            this.titular = titular;
+            this.saldo = saldo;
         }
-        this.codigo = codigo;
-        this.titular = titular;
-        this.saldo = saldo;
 
         movimientos = new ArrayList<>();
         movimientos.add(new Movimiento(LocalDate.now(), TipoMovimiento.INGRESO, saldo, saldo));
@@ -211,7 +213,7 @@ public class Cuenta implements Comparable<Cuenta> {
         if (saldo < cantidad) {
             throw new SaldoException("El saldo es insuficiente");
         }
-        if (destino==null){
+        if (destino == null) {
             throw new NullPointerException("La cuenta a transferir no existe.");
         }
         saldo -= cantidad;
