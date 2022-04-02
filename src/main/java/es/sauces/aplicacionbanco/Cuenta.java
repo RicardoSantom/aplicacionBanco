@@ -1,7 +1,6 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * 
+ * @author Ricardo Santiago Tomé 
  */
 package es.sauces.aplicacionbanco;
 
@@ -13,7 +12,7 @@ import java.util.Objects;
 
 /**
  *
- * @Ricardo Santiago Tomé La clase Cuenta crea objetos con un codigo, titular,
+ * La clase Cuenta crea objetos con un codigo, titular,
  * un saldo y los movimientos que dentro de la cuenta se realizan.
  */
 public class Cuenta implements Comparable<Cuenta> {
@@ -116,6 +115,7 @@ public class Cuenta implements Comparable<Cuenta> {
      *
      * @param saldo float que cambia el saldo preexistente sustituyéndolo por
      * este nuevo saldo recibido como parámetro.
+     * @throws es.sauces.aplicacionbanco.SaldoException
      */
     public void setSaldo(float saldo) throws SaldoException {
         if (saldo < 0) {
