@@ -5,6 +5,7 @@
  */
 package es.sauces.aplicacionbanco2;
 
+import ies.sauces.aplicacionbancomvc.controlador.Movimiento;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Iterator;
